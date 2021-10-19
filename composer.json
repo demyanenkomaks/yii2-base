@@ -56,16 +56,8 @@
             "url": "https://asset-packagist.org"
         },
 		{
-            "type": "package",
-            "package": {
-                "name": "demyanenkomaks/yii2-base",
-                "version": "1.0.0",
-                "source": {
-                    "url": "https://github.com/demyanenkomaks/yii2-base.git",
-                    "type": "git",
-                    "reference": "master"
-                }
-            }
+            "url": "https://github.com/demyanenkomaks/yii2-base",
+            "type": "vcs"
         }
     ],
     "scripts": {
