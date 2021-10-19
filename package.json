@@ -1,0 +1,8 @@
+{
+    "name": "yii2-base",
+    "description": "yii2-base",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/demyanenkomaks/yii2-base.git"
+    }
+}

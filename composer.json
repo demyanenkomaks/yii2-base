@@ -53,10 +53,6 @@
         {
             "type": "composer",
             "url": "https://asset-packagist.org"
-        },
-		{
-            "url": "https://github.com/demyanenkomaks/yii2-base",
-            "type": "vcs"
         }
     ],
     "scripts": {
