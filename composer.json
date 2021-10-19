@@ -50,19 +50,15 @@
         }
     },
     "repositories": [
-        {
-            "type": "composer",
-            "url": "https://asset-packagist.org"
-        },
 		{
             "type": "package",
             "package": {
-                "name": "adldap/adLDAP",
-                "version": "4.0.4",
+                "name": "demyanenkomaks/yii2-base",
+                "version": "1.0.0",
                 "source": {
-                    "url": "https://github.com/adldap/adLDAP",
+                    "url": "https://github.com/demyanenkomaks/yii2-base.git",
                     "type": "git",
-                    "reference": "v4.0.4"
+                    "reference": "master"
                 }
             }
         }
