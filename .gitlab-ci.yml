@@ -1,0 +1,31 @@
+stages:
+  - pull_dev
+  - pull_prod
+
+deploy-dev:
+  stage: pull_dev
+  tags:
+    - pull_dev
+  only:
+    - dev
+  when: always
+  script:
+  - cd /var/www/www-root/data/www/$SITE_NAME/
+  - git pull --ff-only origin dev
+  - cd /var/www/www-root/data/www/$SITE_NAME/protected
+  - composer install && php yii migrate --interactive=0
+
+deploy-prod:
+  stage: pull_prod
+  tags:
+    - deploy_master
+  only:
+    - master
+  when: manual
+  script:
+    - KEY=`ssh-keyscan $SSH_SERVER`
+    - grep -q $KEY ~/.ssh/known_hosts || echo $KEY >> ~/.ssh/known_hosts;
+    - export PHP_PATH='/opt/php/7.3/bin/php'
+    - export COMPOSER="$PHP_PATH $SSH_PATH/protected/composer.phar install"
+    - export MIGRATE="$PHP_PATH $SSH_PATH/protected/yii migrate --interactive=0"
+    - ssh $SSH_USER@$SSH_SERVER "git --git-dir=$SSH_PATH/.git --work-tree=$SSH_PATH pull origin master && $COMPOSER && $MIGRATE"

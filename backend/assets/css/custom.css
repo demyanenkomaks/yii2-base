@@ -1,0 +1,128 @@
+.hidden {
+    display: none;
+}
+
+a:hover {
+    text-decoration: none !important;
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+    font-family: unset;
+}
+
+.topbar-menu {
+    margin-top: 0 !important;
+}
+
+.logo-box {
+    height: 60px;
+}
+
+.logo {
+    line-height: 60px;
+}
+
+.wrapper {
+    padding: 70px 12px 0 12px;
+}
+
+.panel-heading:before, .panel-heading:after {
+    content: " ";
+    display: table;
+    box-sizing: border-box;
+}
+
+.panel-heading:after {
+    clear: both;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-bold {
+    font-weight: bold;
+}
+
+.panel-heading__btn-block {
+    margin-top: 10px;
+    float: right;
+}
+
+.panel-heading__btn-block a,
+.panel-heading__btn-block button {
+    margin-left: 10px;
+}
+
+.breadcrumb {
+    background-color: unset;
+}
+
+.breadcrumb li:not(:first-child):before {
+    font-family: "Material Design Icons";
+    content: '' !important;
+}
+
+.navigation-menu > li > a {
+    font-family: unset;
+}
+
+.has-error input {
+    border-color: red;
+}
+
+.has-error .help-block {
+    color: red;
+}
+
+/* bootstrap 4 panel */
+.panel {
+    margin-bottom: 20px;
+    background-color: #fff;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+}
+.panel-heading {
+    padding: 10px 15px;
+    border-bottom: 1px solid transparent;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    color: #fff;
+}
+
+.panel-body {
+    padding: 15px;
+    color: rgb(41, 43, 44);
+    background-color: transparent;
+}
+
+.page-title-box {
+    margin-bottom: 10px;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.btn-block {
+    position: relative;
+}
+
+.fullwith {
+    width: 100%;
+}
+
+.badge-lg {
+    font-size: 1.2em;
+}
+
+.slick-slider {
+    margin: 0 auto;
+}
+
+.fit-image{
+    width: 100%;
+    object-fit: cover;
+}
