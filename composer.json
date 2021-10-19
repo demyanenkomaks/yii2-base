@@ -16,6 +16,7 @@
     "minimum-stability": "dev",
     "require": {
         "php": ">=7.3.0",
+        "demyanenkomaks/yii2-base":"dev-master@dev",
         "yiisoft/yii2": "~2.0.6",
         "yiisoft/yii2-bootstrap4": "^2.0",
         "yiisoft/yii2-swiftmailer": "~2.0.0",
@@ -50,6 +51,10 @@
         }
     },
     "repositories": [
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        },
 		{
             "type": "package",
             "package": {
