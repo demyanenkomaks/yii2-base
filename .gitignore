@@ -21,6 +21,7 @@ nbproject
 /web/uploads/*
 /web/backend
 /web/index.php
+/web/robots.txt
 
 /backend/web
 
@@ -42,8 +43,9 @@ phpunit.phar
 /html
 
 # yii console commands
-/yii_test
-/yii_test.bat
+yii
+yii_test
+yii_test.bat
 
 # composer itself is not needed
 composer.phar

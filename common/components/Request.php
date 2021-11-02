@@ -3,6 +3,7 @@
 namespace common\components;
 
 use Yii;
+use yii\base\InvalidConfigException;
 
 
 class Request extends \yii\web\Request

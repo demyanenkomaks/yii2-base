@@ -38,19 +38,23 @@ frontend
     runtime/             contains files generated during runtime
     tests/               contains tests for frontend application
     views/               contains view files for the Web application
-    web/                 contains the entry script and Web resources
     widgets/             contains frontend widgets
 vendor/                  contains dependent 3rd-party packages
 environments/            contains environment-based overrides
+web/                 contains frontend the entry script and Web resources
 ```
 
-Launch of the project
+INSTALLATION
 -------------------
+### Install via Composer
+
+If you do not have [Composer](http://getcomposer.org/), you may install it by following the instructions
+at [getcomposer.org](http://getcomposer.org/doc/00-intro.md#installation-nix).
 
 ```
-php -r "copy('.env.example', '.env');"
-// update parameters in .env
-php init --APP_ACTION=install
+composer create-project demyanenkomaks/yii2-base
+php init
+php yii migrate-all
 ```
 
 Update project

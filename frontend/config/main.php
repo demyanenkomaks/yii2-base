@@ -101,7 +101,7 @@ return [
         ],
         'view' => [
             'class' => '\mix8872\yii\minify\View',
-            'enableMinify' => !YII_DEBUG,
+            'enableMinify' => filter_var($_ENV['ENABLE_MINIFY'], FILTER_VALIDATE_BOOLEAN),
             'concatCss' => true, // concatenate css
             'minifyCss' => true, // minificate css
             'concatJs' => true, // concatenate js

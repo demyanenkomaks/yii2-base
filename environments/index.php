@@ -7,7 +7,6 @@
  *
  * ```php
  * return [
- *     'environment name' => [
  *         'path' => 'directory storing the local files',
  *         'skipFiles'  => [
  *             // list of files that should only copied once and skipped if they already exist
@@ -24,7 +23,6 @@
  *         'createSymlink' => [
  *             // list of symlinks to be created. Keys are symlinks, and values are the targets.
  *         ],
- *     ],
  * ];
  * ```
  */
@@ -34,7 +32,7 @@ return [
         'setWritable' => [
             'backend/runtime',
             'frontend/runtime',
-            '../web/assets'
+            'web/assets'
         ],
         'setExecutable' => [
             'yii',
@@ -48,7 +46,8 @@ return [
             'common/config/main-local.php',
         ],
         'createSymlink' => [
-            'backend/web/uploads' => '../web/uploads'
+            'backend/web/uploads' => 'web/uploads',
+            'web/backend' => 'backend/web'
         ],
     ],
     'Production' => [
@@ -56,7 +55,7 @@ return [
         'setWritable' => [
             'backend/runtime',
             'frontend/runtime',
-            '../web/assets'
+            'web/assets'
         ],
         'setExecutable' => [
             'yii',
@@ -69,7 +68,8 @@ return [
             'common/config/main-local.php',
         ],
         'createSymlink' => [
-            'backend/web/uploads' => '../web/uploads'
+            'backend/web/uploads' => 'web/uploads',
+            'web/backend' => 'backend/web'
         ],
     ],
 ];

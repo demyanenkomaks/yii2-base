@@ -1,5 +1,5 @@
 <?php
-
+require(__DIR__ . './env.php');
 return [
 //    'name' => '',
     'aliases' => [
@@ -50,9 +50,6 @@ return [
                 ],
             ],
         ],
-        'cache' => [
-            'class' => 'yii\caching\FileCache',
-        ],
         'config' => [
             'class' => 'mix8872\config\components\Config'
         ],
@@ -85,6 +82,21 @@ return [
                 // '<controller:[a-z\-]{1,50}>/<action:[a-z\-]{1,50}>' => '<controller>/<action>',
                 // '<controller:[a-z\-]{1,50}>/<action:[a-z\-]{1,50}>/<param:[1-9][0-9]{0,10}>' => '<controller>/<action>'
             ],
+        ],
+        'db' => [
+            'class' => 'yii\db\Connection',
+            'dsn' => $_ENV['DB_CONNECTION'] . ':host=' . $_ENV['DB_HOST'] . ';dbname=' . $_ENV['DB_DATABASE'],
+            'username' => $_ENV['DB_USERNAME'],
+            'password' => $_ENV['DB_PASSWORD'],
+            'charset' => 'utf8',
+        ],
+        'mailer' => [
+            'class' => 'yii\swiftmailer\Mailer',
+            'viewPath' => '@common/mail',
+            // send all mails to a file by default. You have to set
+            // 'useFileTransport' to false and configure a transport
+            // for the mailer to send real emails.
+            'useFileTransport' => filter_var($_ENV['MAILER_SEND_FILE'], FILTER_VALIDATE_BOOLEAN),
         ],
     ],
 ];

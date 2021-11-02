@@ -10,10 +10,10 @@ use yii\helpers\Html;
             <div class="logo-box">
                 <a href="/" class="logo text-center">
                     <span class="logo-lg">
-                        <img src="/img/group-logo.svg" alt="" height="20">
+<!--                        <img src="/img/group-logo.svg" alt="" height="20">-->
                     </span>
                     <span class="logo-sm">
-                        <img src="/img/logo-small.svg" alt="" height="20">
+<!--                        <img src="/img/logo-small.svg" alt="" height="20">-->
                     </span>
                 </a>
             </div>

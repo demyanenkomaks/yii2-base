@@ -11,6 +11,8 @@ RewriteCond %{REQUEST_FILENAME} !-d
 # Otherwise forward the request to index.php
 RewriteRule . index.php
 
+Options -Indexes
+
 FileETag MTime Size
 <ifmodule mod_expires.c>
   <filesmatch "\.(jpg|gif|png|css|js)$">
@@ -83,3 +85,5 @@ deny from 198.23.0.0/16
 deny from 198.24.0.0/13
 deny from 198.32.0.0/14
 deny from 198.36.0.0/19
+
+SetEnvIf Authorization .+ HTTP_AUTHORIZATION=$0

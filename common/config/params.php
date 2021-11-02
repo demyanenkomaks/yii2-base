@@ -29,8 +29,6 @@ return [
     /**
      * Set the password reset token expiration time.
      */
-    'user.passwordResetTokenExpire' => 3600,
-
     'adminEmail' => 'admin@example.com',
     'supportEmail' => 'support@example.com',
     'user.passwordResetTokenExpire' => 3600,

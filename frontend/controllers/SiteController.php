@@ -72,6 +72,7 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        $wer = 345;
         return $this->render('index');
     }
 

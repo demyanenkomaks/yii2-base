@@ -5,7 +5,7 @@
  *
  * In order to run in non-interactive mode:
  *
- * init --APP_ACTION=install --APP_ENV=Development --BACKEND_URI=backend --DB_CONNECTION=mysql --DB_HOST=localhost --DB_DATABASE=database --DB_USERNAME=login --DB_PASSWORD=password
+ * init --APP_ENV=Development --BACKEND_URI=backend --DB_CONNECTION=mysql --DB_HOST=localhost --DB_DATABASE=database --DB_USERNAME=login --DB_PASSWORD=password
  *
  * APP_ACTION - required parameter, has value install or update
  */
@@ -25,85 +25,49 @@ foreach ($params as $key => $param) {
     $_ENV[$key] = $param;
 }
 
-$checkVariables = [];
-//if (isset($_ENV['APP_ACTION']) && $_ENV['APP_ACTION'] === 'install') {
-//    $checkVariables = [
-//        'APP_ENV',
-//        'BACKEND_URI',
-//        'DB_CONNECTION',
-//        'DB_HOST',
-//        'DB_DATABASE',
-//        'DB_USERNAME',
-//        'DB_PASSWORD',
-//    ];
-//} elseif (isset($_ENV['APP_ACTION']) && $_ENV['APP_ACTION'] === 'update') {
-//
-//} else {
-//    echo "\nNot enough settings: APP_ACTION";
-//    exit(0);
-//}
 
+$root = str_replace('\\', '/', __DIR__);
+$envs = require "$root/environments/index.php";
 
-$existVariables = [];
-foreach ($checkVariables as $variable) {
-    if (!isset($_ENV[$variable])) {
-        $existVariables[] = $variable;
-    }
-}
-if ($existVariables !== []) {
-    $str = implode(', ', $existVariables);
-    echo "Not enough settings: $str";
+echo "\n\nYii Application Initialization Tool v1.1\n\n";
+
+$envName = null;
+if (isset($envs[$_ENV['APP_ENV']])) {
+    $env = $envs[$_ENV['APP_ENV']];
+} else {
+    $envNames = array_keys($envs);
+    $str = implode(', ', $envNames);
+    echo "\n  Quit initialization. ENV should matter: $str\n";
     exit(0);
 }
 
-if ($_ENV['APP_ACTION'] === 'install') {
+echo "\n\n  Start initialization ...\n\n";
 
-    $root = str_replace('\\', '/', __DIR__);
-    $envs = require "$root/environments/index.php";
-
-    echo "\n\nYii Application Initialization Tool v1.1\n\n";
-
-    $envName = null;
-    if (isset($envs[$_ENV['APP_ENV']])) {
-        $env = $envs[$_ENV['APP_ENV']];
-    } else {
-        $envNames = array_keys($envs);
-        $str = implode(', ', $envNames);
-        echo "\n  Quit initialization. ENV should matter: $str\n";
-        exit(0);
-    }
-
-    echo "\n\n  Start initialization ...\n\n";
-
-    $files = getFileList("$root/environments/{$env['path']}");
-    if (isset($env['skipFiles'])) {
-        $skipFiles = $env['skipFiles'];
-        array_walk($skipFiles, function (&$value) use ($env, $root) {
-            $value = "$root/$value";
-        });
-        $files = array_diff($files, array_intersect_key($env['skipFiles'], array_filter($skipFiles, 'file_exists')));
-    }
-
-    $all = true;
-    foreach ($files as $file) {
-        if (!copyFile($root, "environments/{$env['path']}/$file", $file, $all, $params)) {
-            break;
-        }
-    }
-    copyAll("$root/web", "$root/../web");
-
-    $callbacks = ['setCookieValidationKey', 'setWritable', 'setExecutable', 'createSymlink', 'setDBConnection'];
-    foreach ($callbacks as $callback) {
-        if (!empty($env[$callback])) {
-            $callback($root, $env[$callback]);
-        }
-    }
-
-    echo "\n  ... initialization completed.\n\n";
-
-} elseif ($_ENV['APP_ACTION'] === 'update') {
-
+$files = getFileList("$root/environments/{$env['path']}");
+if (isset($env['skipFiles'])) {
+    $skipFiles = $env['skipFiles'];
+    array_walk($skipFiles, function (&$value) use ($env, $root) {
+        $value = "$root/$value";
+    });
+    $files = array_diff($files, array_intersect_key($env['skipFiles'], array_filter($skipFiles, 'file_exists')));
 }
+
+$all = true;
+foreach ($files as $file) {
+    if (!copyFile($root, "environments/{$env['path']}/$file", $file, $all, $params)) {
+        break;
+    }
+}
+
+$callbacks = ['setCookieValidationKey', 'setWritable', 'setExecutable', 'createSymlink'];
+foreach ($callbacks as $callback) {
+    if (!empty($env[$callback])) {
+        $callback($root, $env[$callback]);
+    }
+}
+
+echo "\n  ... initialization completed.\n\n";
+
 
 
 function copyAll($from, $to, $rewrite = true)
@@ -229,21 +193,6 @@ function getParams()
     return $params;
 }
 
-function setDBConnection($root, $paths)
-{
-    foreach ($paths as $path) {
-        $file = $root . '/' . $path;
-        echo "\nSet database connection parameters to $file \n\n";
-        $content = file_get_contents($file);
-        $content = preg_replace('/%DB_CONNECTION%/', $_ENV['DB_CONNECTION'], $content);
-        $content = preg_replace('/%DB_HOST%/', $_ENV['DB_HOST'], $content);
-        $content = preg_replace('/%DB_DATABASE%/', $_ENV['DB_DATABASE'], $content);
-        $content = preg_replace('/%DB_USERNAME%/', $_ENV['DB_USERNAME'], $content);
-        $content = preg_replace('/%DB_PASSWORD%/', $_ENV['DB_PASSWORD'], $content);
-        file_put_contents($file, $content);
-    }
-}
-
 function setWritable($root, $paths)
 {
     foreach ($paths as $writable) {
@@ -301,17 +250,6 @@ function createSymlink($root, $links)
         } else {
             printError("Cannot create symlink $root/$target $root/$link.");
         }
-    }
-
-    @rmdir("$root/../web/{$_ENV['BACKEND_URI']}");
-//next removing existing symlink in order to update the target
-    if (is_link("$root/../web/{$_ENV['BACKEND_URI']}")) {
-        @unlink("$root/../web/{$_ENV['BACKEND_URI']}");
-    }
-    if (@symlink("$root/backend/web", "$root/../web/{$_ENV['BACKEND_URI']}")) {
-        echo "      symlink $root/backend/web, $root/web/{$_ENV['BACKEND_URI']}\n";
-    } else {
-        printError("Cannot create symlink $root/web/{$_ENV['BACKEND_URI']}.");
     }
 }
 
