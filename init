@@ -5,10 +5,9 @@
  *
  * In order to run in non-interactive mode:
  *
- * init --APP_ENV=Development --BACKEND_URI=backend --DB_CONNECTION=mysql --DB_HOST=localhost --DB_DATABASE=database --DB_USERNAME=login --DB_PASSWORD=password
- *
- * APP_ACTION - required parameter, has value install or update
+ * init --APP=dev --overwrite=n --BACKEND_URI=backend --DB_CONNECTION=mysql --DB_HOST=localhost --DB_DATABASE=database --DB_USERNAME=login --DB_PASSWORD=password
  */
+
 if (!extension_loaded('openssl')) {
     die('The OpenSSL PHP extension is required by Yii2.');
 }
@@ -21,24 +20,60 @@ if (file_exists(__DIR__ . '/.env')) {
 }
 
 $params = getParams();
+$envUpdate = [];
 foreach ($params as $key => $param) {
-    $_ENV[$key] = $param;
+    if (isset($_ENV[$key])) $envUpdate[$key] = $param;
 }
-
 
 $root = str_replace('\\', '/', __DIR__);
 $envs = require "$root/environments/index.php";
+$envNames = array_keys($envs);
 
-echo "\n\nYii Application Initialization Tool v1.1\n\n";
+echo "\n\nYii Application Initialization Tool\n\n";
 
-$envName = null;
-if (isset($envs[$_ENV['APP_ENV']])) {
-    $env = $envs[$_ENV['APP_ENV']];
+$envUpdate['APP'] = null;
+if (empty($params['APP']) || empty($envs[$params['APP']])) {
+    echo "Which environment do you want the application to be initialized in?\n\n";
+    foreach ($envNames as $i => $name) {
+        echo "  [$i] $name\n";
+    }
+    echo "\n  Your choice [0-" . (count($envs) - 1) . ', or "q" to quit] ';
+    $answer = trim(fgets(STDIN));
+
+    if (!ctype_digit($answer) || !in_array($answer, range(0, count($envs) - 1))) {
+        echo "\n  Quit initialization.\n";
+        exit(0);
+    }
+
+    if (isset($envNames[$answer])) {
+        $envUpdate['APP'] = $envNames[$answer];
+    }
 } else {
-    $envNames = array_keys($envs);
-    $str = implode(', ', $envNames);
-    echo "\n  Quit initialization. ENV should matter: $str\n";
-    exit(0);
+    $envUpdate['APP'] = $params['APP'];
+}
+
+$envName = $envUpdate['APP'];
+if (!in_array($envName, $envNames, true)) {
+    $envsList = implode(', ', $envNames);
+    echo "\n  $envName is not a valid environment. Try one of the following: $envsList. \n";
+    exit(2);
+}
+
+$env = $envs[$envUpdate['APP']];
+
+if (empty($params['APP'])) {
+    echo "\n  Initialize the application under '{$envNames[$answer]}' environment? [yes|no] ";
+    $answer = trim(fgets(STDIN));
+    if (strncasecmp($answer, 'y', 1)) {
+        echo "\n  Quit initialization.\n";
+        exit(0);
+    }
+}
+
+$rootPath = "$root/environments/{$env['path']}";
+if (!is_dir($rootPath)) {
+    printError("$rootPath directory does not exist. Check path in $envName environment.");
+    exit(3);
 }
 
 echo "\n\n  Start initialization ...\n\n";
@@ -52,7 +87,7 @@ if (isset($env['skipFiles'])) {
     $files = array_diff($files, array_intersect_key($env['skipFiles'], array_filter($skipFiles, 'file_exists')));
 }
 
-$all = true;
+$all = false;
 foreach ($files as $file) {
     if (!copyFile($root, "environments/{$env['path']}/$file", $file, $all, $params)) {
         break;
@@ -66,30 +101,11 @@ foreach ($callbacks as $callback) {
     }
 }
 
-echo "\n  ... initialization completed.\n\n";
-
-
-
-function copyAll($from, $to, $rewrite = true)
-{
-    if (is_dir($from)) {
-        if (!is_dir($to) && !mkdir($to) && !is_dir($to)) {
-            throw new \RuntimeException(sprintf('Directory "%s" was not created', $to));
-        }
-        $d = dir($from);
-        while (false !== ($entry = $d->read())) {
-            if ($entry === '.' || $entry === '..') continue;
-            copyAll("$from/$entry", "$to/$entry", $rewrite);
-        }
-        $d->close();
-        rmdir($from);
-    } else {
-        if (!file_exists($to) || $rewrite) {
-            copy($from, $to);
-            unlink($from);
-        }
-    }
+foreach ($envUpdate as $key => $value) {
+    envUpdate($key, $value);
 }
+
+echo "\n  ... initialization completed.\n\n";
 
 function getFileList($root, $basePath = '')
 {
@@ -127,7 +143,6 @@ function copyFile($root, $source, $target, &$all, $params)
         } else {
             echo "      exist $target\n";
             echo "            ...overwrite? [Yes|No|All|Quit] ";
-
 
             $answer = !empty($params['overwrite']) ? $params['overwrite'] : trim(fgets(STDIN));
             if (!strncasecmp($answer, 'q', 1)) {
@@ -223,16 +238,13 @@ function setExecutable($root, $paths)
     }
 }
 
-function setCookieValidationKey($root, $paths)
+function setCookieValidationKey($root, $keyEnv)
 {
-    foreach ($paths as $file) {
-        echo "   generate cookie validation key in $file\n";
-        $file = $root . '/' . $file;
-        $length = 32;
+    global $envUpdate;
+    $length = 32;
+    foreach ($keyEnv as $key) {
         $bytes = openssl_random_pseudo_bytes($length);
-        $key = strtr(substr(base64_encode($bytes), 0, $length), '+/=', '_-.');
-        $content = preg_replace('/(("|\')cookieValidationKey("|\')\s*=>\s*)(""|\'\')/', "\\1'$key'", file_get_contents($file));
-        file_put_contents($file, $content);
+        $envUpdate[$key] = strtr(substr(base64_encode($bytes), 0, $length), '+/=', '_-.');
     }
 }
 
@@ -319,4 +331,12 @@ function formatMessage($message, $styles)
     }
 
     return sprintf("\x1b[%sm", implode(';', array_map('getStyleCode', $styles))) . $message . "\x1b[0m";
+}
+
+function envUpdate($key, $value)
+{
+    $pathEnv = __DIR__ . '/.env';
+    file_put_contents($pathEnv, str_replace(
+        $key . '=' . $_ENV[$key], $key . '=' . $value, file_get_contents($pathEnv)
+    ));
 }

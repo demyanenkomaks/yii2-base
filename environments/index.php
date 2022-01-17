@@ -18,7 +18,7 @@
  *             // list of files that should be set executable
  *         ],
  *         'setCookieValidationKey' => [
- *             // list of config files that need to be inserted with automatically generated cookie validation keys
+ *             // list of config env that need to be inserted with automatically generated cookie validation keys
  *         ],
  *         'createSymlink' => [
  *             // list of symlinks to be created. Keys are symlinks, and values are the targets.
@@ -27,10 +27,12 @@
  * ```
  */
 return [
-    'Development' => [
+    'dev' => [
         'path' => 'dev',
         'setWritable' => [
             'backend/runtime',
+            'backend/web/assets',
+            'console/runtime',
             'frontend/runtime',
             'web/assets'
         ],
@@ -39,21 +41,20 @@ return [
             'yii_test',
         ],
         'setCookieValidationKey' => [
-            'backend/config/main-local.php',
-            'frontend/config/main-local.php',
-        ],
-        'setDBConnection' => [
-            'common/config/main-local.php',
+            'COOKIE_VALIDATION_KEY_BACKEND',
+            'COOKIE_VALIDATION_KEY_FRONTEND',
         ],
         'createSymlink' => [
             'backend/web/uploads' => 'web/uploads',
             'web/backend' => 'backend/web'
         ],
     ],
-    'Production' => [
+    'prod' => [
         'path' => 'prod',
         'setWritable' => [
             'backend/runtime',
+            'backend/web/assets',
+            'console/runtime',
             'frontend/runtime',
             'web/assets'
         ],
@@ -61,11 +62,8 @@ return [
             'yii',
         ],
         'setCookieValidationKey' => [
-            'backend/config/main-local.php',
-            'frontend/config/main-local.php',
-        ],
-        'setDBConnection' => [
-            'common/config/main-local.php',
+            'COOKIE_VALIDATION_KEY_BACKEND',
+            'COOKIE_VALIDATION_KEY_FRONTEND',
         ],
         'createSymlink' => [
             'backend/web/uploads' => 'web/uploads',

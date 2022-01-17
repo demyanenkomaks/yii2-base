@@ -6,7 +6,7 @@ $params = array_merge(
     require __DIR__ . '/params-local.php'
 );
 
-return [
+$config = [
     'id' => 'app-backend',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
@@ -113,8 +113,9 @@ return [
             ],
         ],
         'request' => [
-            'class' => 'common\components\Request',//multilang
-            'csrfParam' => '_csrf-backend',
+            'class' => 'common\components\Request',
+            'csrfParam' => $_ENV['CSRF_PARAM_BACKEND'],
+            'cookieValidationKey' => $_ENV['COOKIE_VALIDATION_KEY_BACKEND'],
         ],
         'session' => [
             // this is the name of the session cookie used for login on the backend
@@ -143,3 +144,35 @@ return [
     ],
     'params' => $params,
 ];
+
+if (filter_var($_ENV['DEBUG_BACKEND'], FILTER_VALIDATE_BOOLEAN)) {
+    $config['bootstrap'][] = 'debug';
+    $config['modules']['debug'] = [
+        'class' => 'yii\debug\Module',
+        'allowedIPs' => explode(',', $_ENV['DEBUG_ALLOWED_IPS']),
+    ];
+}
+
+if (filter_var($_ENV['GII_BACKEND'], FILTER_VALIDATE_BOOLEAN)) {
+    $config['bootstrap'][] = 'gii';
+    $config['modules']['gii'] = [
+        'class' => 'yii\gii\Module',
+        'allowedIPs' => explode(',', $_ENV['GII_ALLOWED_IPS']),
+        'generators' => [
+            'crudlang' => [
+                'class' => 'common\gii\crudlang\Generator', // generator class
+                'templates' => [
+                    'Template_lng' => '@common/gii/crudlang/crudLangTpl', // template name => path to template
+                ]
+            ],
+            'crudbs4' => [
+                'class' => 'common\gii\crudbs4\Generator', // generator class
+                'templates' => [
+                    'Template' => '@common/gii/crudbs4/bs4', // template name => path to template
+                ]
+            ]
+        ],
+    ];
+}
+
+return $config;

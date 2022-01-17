@@ -17,7 +17,7 @@ $this->title = Yii::t('app', 'Вход');
                 <div class="card bg-pattern">
                     <div class="card-body p-4">
                         <div class="text-center w-75 m-auto">
-                            <span><img src="/images/logo-dark.png" alt="" height="30"></span>
+                            <span><img src="/img/logo/logo.png" alt="" height="30"></span>
                             <p class="text-muted mb-4 mt-3">Введите ваш логин и пароль для доступа</p>
                         </div>
 

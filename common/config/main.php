@@ -9,6 +9,7 @@ return [
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'sourceLanguage' => 'ru',
     'language' => 'ru-RU',
+    'timeZone' => 'Europe/Moscow',
     'modules' => [
         'files' => [
             'class' => 'mix8872\yiiFiles\Module',
@@ -97,6 +98,11 @@ return [
             // 'useFileTransport' to false and configure a transport
             // for the mailer to send real emails.
             'useFileTransport' => filter_var($_ENV['MAILER_SEND_FILE'], FILTER_VALIDATE_BOOLEAN),
+        ],
+        'formatter' => [
+            'dateFormat' => 'php:d.m.Y',
+            'datetimeFormat' => 'php:d.m.Y H:i',
+            'timeFormat' => 'php:H:i',
         ],
     ],
 ];

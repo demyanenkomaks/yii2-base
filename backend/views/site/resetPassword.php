@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                         <div class="text-center w-75 m-auto">
                             <a href="/">
-                                <span><img src="/images/logo-dark.png" alt="" height="70"></span>
+                                <span><img src="/img/logo/logo.png" alt="" height="70"></span>
                             </a>
                             <p class="text-muted mb-4 mt-3">Введите новый пароль</p>
                         </div>

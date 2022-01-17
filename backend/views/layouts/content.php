@@ -1,7 +1,6 @@
 <?php
 
 use yii\widgets\Breadcrumbs;
-use common\widgets\Alert;
 
 ?>
 <div class="wrapper">
@@ -12,7 +11,6 @@ use common\widgets\Alert;
                 <div class="page-title-box">
                     <div class="page-title-left mt-10">
                         <?= Breadcrumbs::widget([
-//                            'itemTemplate' => "<li class='breadcrumb-item'>{link}</li>\n",
                             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
                         ]) ?>
                     </div>

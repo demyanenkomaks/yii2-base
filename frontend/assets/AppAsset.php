@@ -12,7 +12,12 @@ class AppAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/site.css',
+        [
+            'href' => '/img/favicon/favicon.ico',
+            'rel' => 'icon',
+            'sizes' => '32x32',
+        ],
+//        'css/site.css',
     ];
     public $js = [
     ];
