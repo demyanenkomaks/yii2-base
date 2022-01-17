@@ -61,7 +61,9 @@ Update project
 -------------------
 
 ```
-php init --APP_ACTION=update
+git pull --ff-only origin dev
+composer install
+php yii migrate --interactive=0
 ```
 
 Console Rbac
