@@ -52,7 +52,7 @@ If you do not have [Composer](http://getcomposer.org/), you may install it by fo
 at [getcomposer.org](http://getcomposer.org/doc/00-intro.md#installation-nix).
 
 ```
-composer create-project demyanenkomaks/yii2-base
+composer create-project demyanenkomaks/yii2-base or git clone ...
 php init
 php yii migrate-all
 ```
