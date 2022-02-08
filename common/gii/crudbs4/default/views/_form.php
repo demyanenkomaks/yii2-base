@@ -40,7 +40,7 @@ use yii\widgets\ActiveForm;
                     <?= '<?php ' ?> if (!$model->isNewRecord): ?>
                         <?= '<?= ' ?> Html::a(Html::tag('i', '', ['class' => 'fa fa-times']) . ' Удалить', ['delete', 'id' => $model->id], [
                             'class' => 'btn btn-danger ml-2 mt-2',
-                            'data-confirm' => 'Удвлить элемент?'
+                            'data-confirm' => 'Удалить элемент?'
                         ]) ?>
                     <?= '<?php ' ?> endif; ?>
                 </div>

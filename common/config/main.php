@@ -1,5 +1,5 @@
 <?php
-require(__DIR__ . './env.php');
+require(__DIR__ . '/env.php');
 return [
 //    'name' => '',
     'aliases' => [
@@ -86,10 +86,10 @@ return [
         ],
         'db' => [
             'class' => 'yii\db\Connection',
-            'dsn' => $_ENV['DB_CONNECTION'] . ':host=' . $_ENV['DB_HOST'] . ';dbname=' . $_ENV['DB_DATABASE'],
+            'dsn' => $_ENV['DB_CONNECTION'] . ':host=' . $_ENV['DB_HOST'] . ';port=' . $_ENV['DB_PORT'] . ';dbname=' . $_ENV['DB_DATABASE'],
             'username' => $_ENV['DB_USERNAME'],
             'password' => $_ENV['DB_PASSWORD'],
-            'charset' => 'utf8',
+            'charset' => $_ENV['DB_CHARSET'],
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',

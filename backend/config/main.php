@@ -38,7 +38,8 @@ $config = [
     'as access' => [
         'class' => 'mix8872\useradmin\components\AccessControl',
         'allowActions' => [
-            '*',
+//            '*',
+            'site/logout',
         ]
     ],
     'modules' => [
