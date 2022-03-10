@@ -37,9 +37,6 @@ return [
             // 'downloadAction' => 'gridview/export/download',
             // 'i18n' => []
         ],
-        'content' => [
-            'class' => '\common\modules\content\Module'
-        ],
     ],
     'components' => [
         'i18n' => [//multilang

@@ -48,5 +48,4 @@ yii_test
 yii_test.bat
 
 # composer itself is not needed
-composer.phar
-composer.lock
+/composer.phar

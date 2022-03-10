@@ -20,31 +20,6 @@ return [
             'class' => 'yii\console\controllers\FixtureController',
             'namespace' => 'common\fixtures',
         ],
-//        'migrate-rbac' => [
-//            'class' => 'yii\console\controllers\MigrateController',
-//            'migrationPath' => '@yii/rbac/migrations',
-//        ],
-//        'migrate-modules' => [
-//            'class' => 'yii\console\controllers\MigrateController',
-//            'migrationPath' => null,
-//            'migrationNamespaces' => [
-//                'mix8872\menu\migrations',
-//                'mix8872\useradmin\migrations',
-//                'mix8872\yiiFiles\migrations',
-//                'mix8872\config\migrations',
-//            ],
-//        ],
-        'migrate' => [
-            'class' => 'yii\console\controllers\MigrateController',
-            'migrationPath' => [
-                '@yii/rbac/migrations',
-                '@vendor/mix8872/yii2-menu/src/migrations',
-                '@vendor/mix8872/yii2-user-admin/src/migrations',
-                '@vendor/mix8872/yii2-files/src/migrations',
-                '@vendor/mix8872/yii2-config/src/migrations',
-                '@console/migrations',
-            ]
-        ],
     ],
     'components' => [
         'log' => [
