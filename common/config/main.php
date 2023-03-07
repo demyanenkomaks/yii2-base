@@ -89,12 +89,9 @@ return [
             'charset' => $_ENV['DB_CHARSET'],
         ],
         'mailer' => [
-            'class' => 'yii\swiftmailer\Mailer',
+            'class' => \yii\symfonymailer\Mailer::class,
             'viewPath' => '@common/mail',
-            // send all mails to a file by default. You have to set
-            // 'useFileTransport' to false and configure a transport
-            // for the mailer to send real emails.
-            'useFileTransport' => filter_var($_ENV['MAILER_SEND_FILE'], FILTER_VALIDATE_BOOLEAN),
+            'useFileTransport' =>  filter_var($_ENV['MAILER_SEND_FILE'], FILTER_VALIDATE_BOOLEAN),
         ],
         'formatter' => [
             'dateFormat' => 'php:d.m.Y',

@@ -58,61 +58,8 @@ $config = [
         'config' => [
             'class' => \mix8872\config\Module::class
         ],
-        'menu' => [
-            'class' => \mix8872\menu\Module::class
-        ],
     ],
     'components' => [
-        'response' => [
-            'class' => 'bicf\securityheaders\components\Response',
-            'on afterPrepare' => ['bicf\securityheaders\components\Response', 'addSecurityHeaders'],
-            'on beforeSend' => function($event) {
-                $event->sender->headers->add('X-XSS-Protection', 1);
-            },
-            'modules' => [
-                'XContentTypeOptions' => [
-                    'class' => 'bicf\securityheaders\modules\HeaderXContentTypeOptions',
-                    'value' => 'nosniff',
-                ],
-                'AccessControlAllowMethods' => [
-                    'class' => 'bicf\securityheaders\modules\HeaderAccessControlAllowMethods',
-                    'value' => 'GET, POST',
-                ],
-                'AccessControlAllowOrigin' => [
-                    'class' => 'bicf\securityheaders\modules\HeaderAccessControlAllowOrigin',
-                    'value' => "https://{$_SERVER['HTTP_HOST']}",
-                ],
-                'ContentSecurityPolicyAcl' => [
-                    'class' => 'bicf\securityheaders\modules\HeaderContentSecurityPolicyAcl',
-                    'enabled' => false,
-                    'policies' => [
-                        'default-src' => "'self' 'unsafe-inline' 'unsafe-eval'",
-                        'frame-src' => "'self'",
-                        'img-src' => "'self' data: www.google-analytics.com mc.yandex.ru www.google.com www.google.ru",
-                        'font-src' => "'self' fonts.gstatic.com maxcdn.bootstrapcdn.com",
-                        'media-src' => "'self' data:",
-                        'script-src' => "'self' 'unsafe-inline' 'unsafe-eval' www.google-analytics.com mc.yandex.ru www.google.com www.google.ru",
-                        'style-src' => "'self' 'unsafe-inline'",
-                        'connect-src' => "'self'",
-//                        'report-uri' => '/report-csp-acl',
-                    ],
-                ],
-                'ContentSecurityPolicyMonitor' => [
-                    'class' => 'bicf\securityheaders\modules\HeaderContentSecurityPolicyMonitor',
-                    'policies' => [
-                        'default-src' => "'self' 'unsafe-inline' 'unsafe-eval'",
-                        'frame-src' => "'self'",
-                        'img-src' => "'self' data: www.google-analytics.com mc.yandex.ru www.google.com www.google.ru",
-                        'font-src' => "'self' 'unsafe-inline' 'unsafe-eval' data: fonts.gstatic.com maxcdn.bootstrapcdn.com",
-                        'media-src' => "'self' data:",
-                        'script-src' => "'self' 'unsafe-inline' 'unsafe-eval' www.google-analytics.com mc.yandex.ru www.google.com www.google.ru",
-                        'style-src' => "'self' 'unsafe-inline'",
-                        'connect-src' => "'self'",
-//                        'report-uri' => "/report-csp-acl",
-                    ],
-                ],
-            ],
-        ],
         'request' => [
             'class' => 'common\components\Request',
             'csrfParam' => $_ENV['CSRF_PARAM_BACKEND'],

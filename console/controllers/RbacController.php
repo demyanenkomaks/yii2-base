@@ -114,6 +114,7 @@ class RbacController extends Controller
             $user = new User();
             $user->username = $login;
             $user->email = Yii::$app->security->generateRandomString(15) . '@root.ru';
+            $user->status = User::STATUS_ACTIVE;
             $user->setPassword($password);
             $user->generateAuthKey();
             $user->save();

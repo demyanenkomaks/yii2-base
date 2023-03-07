@@ -17,9 +17,6 @@ class MigrateAllController extends Controller
         $migration->runAction('up', ['migrationPath' => null, 'migrationNamespaces' => 'mix8872\config\migrations', 'interactive' => false]);
 
         $migration = new \yii\console\controllers\MigrateController('migrate', Yii::$app);
-        $migration->runAction('up', ['migrationPath' => null, 'migrationNamespaces' => 'mix8872\menu\migrations', 'interactive' => false]);
-
-        $migration = new \yii\console\controllers\MigrateController('migrate', Yii::$app);
         $migration->runAction('up', ['migrationPath' => null, 'migrationNamespaces' => 'mix8872\useradmin\migrations', 'interactive' => false]);
 
         $migration = new \yii\console\controllers\MigrateController('migrate', Yii::$app);

@@ -25,16 +25,6 @@ use yii\helpers\Html;
                 </div>
             </a>
             <div id="navigation">
-                <?php if (!Yii::$app->user->isGuest): ?>
-                    <!-- Navigation Menu-->
-                    <?= \mix8872\menu\widgets\MenuWidget::widget([
-                        'code' => 'main-menu',
-                        'isParentActive' => true,
-                        'menuClassName' => 'navigation-menu in',
-                        'parentClassName' => 'has-submenu',
-                        'submenuClassName' => 'submenu'
-                    ]) ?>
-                <?php endif; ?>
                 <?php if (Yii::$app->user->can('admin')) : ?>
                     <?= backend\widgets\Menu::widget([
                             'options' => [
@@ -51,11 +41,6 @@ use yii\helpers\Html;
                                     'linkOptions' => ['class' => 'has-submenu'],
                                     'url' => '#',
                                     'items' => [
-                                        [
-                                            'label' => Yii::t('app', 'Меню'),
-                                            'url' => ['/menu/'],
-                                            'icon' => 'fa fa-bars'
-                                        ],
                                         [
                                             'label' => Yii::t('app', 'Настройки'),
                                             'url' => ['/config/'],
