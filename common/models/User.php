@@ -2,6 +2,7 @@
 
 namespace common\models;
 
+use mix8872\yiiFiles\behaviors\FileAttachBehavior;
 use Yii;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
@@ -45,6 +46,19 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return [
             TimestampBehavior::class,
+            'files' => [
+                'class' => FileAttachBehavior::class,
+                'attributes' => [
+                    'img' => [
+                        'multiple' => false,
+                        'filetypes' => ['image/png'],
+                    ],
+                    'imgs' => [
+                        'multiple' => true,
+                        'filetypes' => ['image/png'],
+                    ],
+                ],
+            ],
         ];
     }
 

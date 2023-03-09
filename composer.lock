@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9bb81b416f72ab0e17728a5778141e58",
+    "content-hash": "b1429f07632604f624b2a58311b19082",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -1972,7 +1972,7 @@
         },
         {
             "name": "mix8872/yii2-config",
-            "version": "dev-master",
+            "version": "2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mix8872/yii2-config.git",
@@ -1997,7 +1997,6 @@
                 "yiisoft/yii2-jui": "~2.0",
                 "yiisoft/yii2-symfonymailer": "~3.0.0"
             },
-            "default-branch": true,
             "type": "yii2-extension",
             "extra": {
                 "class": "mix8872\\config\\Plugin"
@@ -2026,16 +2025,16 @@
         },
         {
             "name": "mix8872/yii2-files",
-            "version": "dev-master",
+            "version": "1.3.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mix8872/yii2-files.git",
-                "reference": "cbf293be7059995f1eea3acd3d1cc55c1e0bf1ae"
+                "reference": "4dba2396efd12edb715127969dec617e3f031907"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mix8872/yii2-files/zipball/cbf293be7059995f1eea3acd3d1cc55c1e0bf1ae",
-                "reference": "cbf293be7059995f1eea3acd3d1cc55c1e0bf1ae",
+                "url": "https://api.github.com/repos/mix8872/yii2-files/zipball/4dba2396efd12edb715127969dec617e3f031907",
+                "reference": "4dba2396efd12edb715127969dec617e3f031907",
                 "shasum": ""
             },
             "require": {
@@ -2044,9 +2043,9 @@
                 "himiklab/yii2-sortable-grid-view-widget": "*",
                 "intervention/image": "*",
                 "npm-asset/bootstrap-fileinput": "~5.1",
-                "php": ">=7.1.0"
+                "php": ">=7.1.0",
+                "twbs/bootstrap-icons": "^1.10"
             },
-            "default-branch": true,
             "type": "yii2-extension",
             "autoload": {
                 "psr-4": {
@@ -2066,9 +2065,9 @@
             "description": "Module for files attachment",
             "support": {
                 "issues": "https://github.com/mix8872/yii2-files/issues",
-                "source": "https://github.com/mix8872/yii2-files/tree/v1.3.3"
+                "source": "https://github.com/mix8872/yii2-files/tree/v1.3.4"
             },
-            "time": "2022-03-14T16:35:39+00:00"
+            "time": "2023-03-09T09:35:56+00:00"
         },
         {
             "name": "mix8872/yii2-minify-view",
@@ -2534,16 +2533,16 @@
         },
         {
             "name": "myclabs/deep-copy",
-            "version": "1.11.0",
+            "version": "1.11.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/myclabs/DeepCopy.git",
-                "reference": "14daed4296fae74d9e3201d2c4925d1acb7aa614"
+                "reference": "7284c22080590fb39f2ffa3e9057f10a4ddd0e0c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/14daed4296fae74d9e3201d2c4925d1acb7aa614",
-                "reference": "14daed4296fae74d9e3201d2c4925d1acb7aa614",
+                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/7284c22080590fb39f2ffa3e9057f10a4ddd0e0c",
+                "reference": "7284c22080590fb39f2ffa3e9057f10a4ddd0e0c",
                 "shasum": ""
             },
             "require": {
@@ -2581,7 +2580,7 @@
             ],
             "support": {
                 "issues": "https://github.com/myclabs/DeepCopy/issues",
-                "source": "https://github.com/myclabs/DeepCopy/tree/1.11.0"
+                "source": "https://github.com/myclabs/DeepCopy/tree/1.11.1"
             },
             "funding": [
                 {
@@ -2589,7 +2588,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-03-03T13:19:32+00:00"
+            "time": "2023-03-08T13:26:56+00:00"
         },
         {
             "name": "myclabs/php-enum",
@@ -4656,6 +4655,45 @@
             "time": "2018-01-15T15:26:51+00:00"
         },
         {
+            "name": "twbs/bootstrap-icons",
+            "version": "v1.10.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/twbs/icons.git",
+                "reference": "817d780a476dbb24b269a89ba56ff1d0d4125132"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/twbs/icons/zipball/817d780a476dbb24b269a89ba56ff1d0d4125132",
+                "reference": "817d780a476dbb24b269a89ba56ff1d0d4125132",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mark Otto",
+                    "email": "markdotto@gmail.com"
+                }
+            ],
+            "description": "Official open source SVG icon library for Bootstrap",
+            "homepage": "https://icons.getbootstrap.com/",
+            "keywords": [
+                "bootstrap",
+                "icon font",
+                "icons",
+                "svg"
+            ],
+            "support": {
+                "issues": "https://github.com/twbs/icons/issues",
+                "source": "https://github.com/twbs/icons/tree/v1.10.3"
+            },
+            "time": "2022-12-27T05:46:02+00:00"
+        },
+        {
             "name": "vlucas/phpdotenv",
             "version": "v5.5.0",
             "source": {
@@ -5967,16 +6005,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "9.6.4",
+            "version": "9.6.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "9125ee085b6d95e78277dc07aa1f46f9e0607b8d"
+                "reference": "86e761949019ae83f49240b2f2123fb5ab3b2fc5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/9125ee085b6d95e78277dc07aa1f46f9e0607b8d",
-                "reference": "9125ee085b6d95e78277dc07aa1f46f9e0607b8d",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/86e761949019ae83f49240b2f2123fb5ab3b2fc5",
+                "reference": "86e761949019ae83f49240b2f2123fb5ab3b2fc5",
                 "shasum": ""
             },
             "require": {
@@ -6009,8 +6047,8 @@
                 "sebastian/version": "^3.0.2"
             },
             "suggest": {
-                "ext-soap": "*",
-                "ext-xdebug": "*"
+                "ext-soap": "To be able to generate mocks based on WSDL files",
+                "ext-xdebug": "PHP extension that provides line coverage as well as branch and path coverage"
             },
             "bin": [
                 "phpunit"
@@ -6049,7 +6087,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/9.6.4"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/9.6.5"
             },
             "funding": [
                 {
@@ -6065,7 +6103,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-02-27T13:06:37+00:00"
+            "time": "2023-03-09T06:34:10+00:00"
         },
         {
             "name": "sebastian/cli-parser",
@@ -7409,8 +7447,6 @@
     "stability-flags": {
         "mix8872/yii2-minify-view": 20,
         "mix8872/yii2-user-admin": 20,
-        "mix8872/yii2-files": 20,
-        "mix8872/yii2-config": 20,
         "kartik-v/yii2-grid": 20,
         "kartik-v/yii2-bootstrap4-dropdown": 20,
         "kartik-v/yii2-detail-view": 20,

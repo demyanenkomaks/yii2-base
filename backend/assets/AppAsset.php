@@ -2,7 +2,9 @@
 
 namespace backend\assets;
 
+
 use yii\web\AssetBundle;
+
 
 /**
  * Main backend application asset bundle.
@@ -27,11 +29,12 @@ class AppAsset extends AssetBundle
         'libs/jquery-toast/jquery.toast.min.js',
         'js/jquery.slimscroll.js',
         'js/waves.js',
-//        'js/app.min.js',
+        'js/app.js',
         'js/custom.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',
-        \yii\bootstrap4\BootstrapPluginAsset::class
+        'yii\jui\JuiAsset',
+        'yii\bootstrap4\BootstrapPluginAsset'
     ];
 }

@@ -1,5 +1,6 @@
 {
     "name": "demyanenkomaks/yii2-base",
+    "version": "2.0.0",
     "description": "Yii 2 Advanced Project Template",
     "keywords": [
         "yii2",
@@ -28,14 +29,14 @@
         "paulzi/yii2-nested-sets": "^1.0",
         "mix8872/yii2-minify-view": "dev-master",
         "mix8872/yii2-user-admin": "dev-master",
-        "mix8872/yii2-files": "dev-master",
-        "mix8872/yii2-config": "dev-master",
+        "mix8872/yii2-config": "^2.1",
         "kartik-v/yii2-grid": "@dev",
         "kartik-v/yii2-bootstrap4-dropdown": "@dev",
         "kartik-v/yii2-detail-view": "dev-master",
         "kartik-v/yii2-export": "dev-master",
         "rmrevin/yii2-fontawesome": "~3.5",
-        "vlucas/phpdotenv": "^5.3"
+        "vlucas/phpdotenv": "^5.3",
+        "mix8872/yii2-files": "^1.3"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",
