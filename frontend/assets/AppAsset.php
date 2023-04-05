@@ -13,7 +13,7 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         [
-            'href' => '/img/favicon/favicon.ico',
+            'href' => '/favicon.ico',
             'rel' => 'icon',
             'sizes' => '32x32',
         ],
@@ -23,6 +23,6 @@ class AppAsset extends AssetBundle
     ];
     public $depends = [
         'yii\web\YiiAsset',
-        'yii\bootstrap4\BootstrapAsset',
+        'yii\bootstrap5\BootstrapAsset',
     ];
 }

@@ -13,17 +13,18 @@ class Menu extends \yii\widgets\Menu
     /**
      * @inheritdoc
      */
-    public $linkTemplate = '<a href="{url}"{attr}>{icon} {label}</a>';
-    /**
-     * @inheritdoc
-     * Styles all labels of items on sidebar by AdminLTE
-     */
+    public $linkTemplate = '<a href="{url}" {attr}>{icon} {label}</a>';
     public $labelTemplate = '<span>{label}</span>';
-    public $submenuTemplate = "\n<ul class='submenu' {show}>\n{items}\n</ul>\n";
+    public $submenuTemplate = '<div class="collapse menu-dropdown" id="{id}"><ul class="nav nav-sm flex-column">{items}</ul></div>';
+    public $itemOptions = ['class' => 'nav-item'];
     public $activateParents = true;
     public $defaultIconHtml = '<i class="ti-pin-alt"></i> ';
-    public $options = ['id' => 'sidebar-menu', 'tag' => 'div'];
-    public $isParentCssClass = 'has_sub';
+    public $options = [
+        'class' => 'navbar-nav',
+        'id' => 'navbar-nav',
+        'tag' => false,
+    ];
+    public $isParentCssClass = '';
 
     /**
      * @var string is prefix that will be added to $item['icon'] if it exist.
@@ -75,17 +76,17 @@ class Menu extends \yii\widgets\Menu
     protected function renderItem($item)
     {
         if (isset($item['items'])) {
-            $labelTemplate = '<a href="{url}">{icon} {label} <div class="arrow-down"></div></a>';
-            $linkTemplate = '<a href="{url}">{icon} {label} <div class="arrow-down"></div></a>';
+            $labelTemplate = '<a class="nav-link menu-link" href="{url}" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarDashboards">{icon} <span>{label}</span></a>';
+            $linkTemplate = '<a class="nav-link menu-link" href="{url}" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarDashboards">{icon} <span>{label}</span></a>';
         } else {
             $labelTemplate = $this->labelTemplate;
             $linkTemplate = $this->linkTemplate;
         }
 
         $replacements = [
-            '{label}' => strtr($this->labelTemplate, ['{label}' => $item['label']]),
-            '{icon}' => empty($item['icon']) ? $this->defaultIconHtml
-                : '<i class="' . $item['icon'] . '"></i> ',
+//            '{label}' => strtr($labelTemplate, ['{label}' => $item['label']]),
+            '{label}' => $item['label'],
+            '{icon}' => empty($item['icon']) ? $this->defaultIconHtml : '<i class="' . $item['icon'] . '"></i> ',
             '{url}' => isset($item['url']) ? Url::to($item['url']) : 'javascript:void(0);',
             '{attr}' => Html::renderTagAttributes(ArrayHelper::getValue($item, 'linkOptions', [])),
         ];
@@ -109,19 +110,22 @@ class Menu extends \yii\widgets\Menu
             $tag = ArrayHelper::remove($options, 'tag', 'li');
             $class = [];
             if ($item['active']) {
-                Html::addCssClass($options, $this->activeCssClass);
+                $class[] = $this->activeCssClass;
             }
             if ($i === 0 && $this->firstItemCssClass !== null) {
-                Html::addCssClass($options, $this->firstItemCssClass);
+                $class[] = $this->firstItemCssClass;
             }
             if ($i === $n - 1 && $this->lastItemCssClass !== null) {
-                Html::addCssClass($options, $this->lastItemCssClass);
+                $class[] = $this->lastItemCssClass;
             }
+            Html::addCssClass($options, $class);
+
             $menu = $this->renderItem($item);
             if (!empty($item['items'])) {
                 $menu .= strtr($this->submenuTemplate, [
                     '{show}' => $item['active'] ? "style='display: block'" : '',
                     '{items}' => $this->renderItems($item['items']),
+                    '{id}' => $item['id'] ?? '',
                 ]);
                 Html::addCssClass($options, $this->isParentCssClass);
             }

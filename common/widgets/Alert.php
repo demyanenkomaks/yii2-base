@@ -23,7 +23,7 @@ use Yii;
  * @author Kartik Visweswaran <kartikv2@gmail.com>
  * @author Alexander Makarov <sam@rmcreative.ru>
  */
-class Alert extends \yii\bootstrap4\Widget
+class Alert extends \yii\bootstrap5\Widget
 {
     /**
      * @var array the alert types configuration for the flash messages.
@@ -52,7 +52,6 @@ class Alert extends \yii\bootstrap4\Widget
     {
         $session = Yii::$app->session;
         $flashes = $session->getAllFlashes();
-        $appendClass = isset($this->options['class']) ? ' ' . $this->options['class'] : '';
         $view = $this->getView();
         $js = '';
 
@@ -66,8 +65,9 @@ class Alert extends \yii\bootstrap4\Widget
                             text: "$message",
                             position: "top-center",
                             icon: "$type",
-                            hideAfter: false,
-                            stack: 15
+                            stack: 15,
+                            showHideTransition: 'slide',
+                            hideAfter: 5000,
                         });
 JS;
             }

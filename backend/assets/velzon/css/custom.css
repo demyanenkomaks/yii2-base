@@ -1,0 +1,22 @@
+html[data-layout="vertical"] li.nav-item {
+    width: 100%;
+}
+
+html[data-layout-mode="dark"] .kv-table-header {
+    background: none;
+}
+
+.bs-example
+{
+    margin: 30px;
+    height: 120px;
+    overflow: scroll;
+}
+.dropdown-menu{
+    position:fixed;
+}
+
+.button{
+    height:30px;
+}
+

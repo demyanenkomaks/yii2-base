@@ -46,19 +46,6 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return [
             TimestampBehavior::class,
-            'files' => [
-                'class' => FileAttachBehavior::class,
-                'attributes' => [
-                    'img' => [
-                        'multiple' => false,
-                        'filetypes' => ['image/png'],
-                    ],
-                    'imgs' => [
-                        'multiple' => true,
-                        'filetypes' => ['image/png'],
-                    ],
-                ],
-            ],
         ];
     }
 

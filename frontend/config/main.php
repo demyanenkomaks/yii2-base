@@ -107,10 +107,10 @@ if (filter_var($_ENV['GII_FRONTEND'], FILTER_VALIDATE_BOOLEAN)) {
                     'Template_lng' => '@common/gii/crudlang/crudLangTpl', // template name => path to template
                 ]
             ],
-            'crudbs4' => [
-                'class' => 'common\gii\crudbs4\Generator', // generator class
+            'crudbs5' => [
+                'class' => 'common\gii\crudbs5\Generator', // generator class
                 'templates' => [
-                    'Template' => '@common/gii/crudbs4/bs4', // template name => path to template
+                    'Template' => '@common/gii/crudbs5/bs5', // template name => path to template
                 ]
             ]
         ],
