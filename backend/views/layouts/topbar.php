@@ -1,95 +1,83 @@
 <?php
 
-use yii\helpers\Html;
+use yii\helpers\Url;
 
 ?>
-<!-- Navigation Bar-->
-<header id="topnav">
-    <div class="topbar-menu">
+<!-- ========== App Menu ========== -->
+<div class="app-menu navbar-menu">
+    <!-- LOGO -->
+    <div class="navbar-brand-box">
+        <!-- Dark Logo-->
+        <a href="<?= Url::to(['/'])?>" class="logo logo-dark">
+            <span class="logo-sm"><img src="/images/logo-sm.png" alt="" height="22"></span>
+            <span class="logo-lg"><img src="/images/logo-dark.png" alt="" height="17"></span>
+        </a>
+        <!-- Light Logo-->
+        <a href="<?= Url::to(['/'])?>" class="logo logo-light">
+            <span class="logo-sm"><img src="/images/logo-sm.png" alt="" height="22"></span>
+            <span class="logo-lg"><img src="/images/logo-light.png" alt="" height="17"></span>
+        </a>
+        <button type="button" class="btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover"
+                id="vertical-hover">
+            <i class="ri-record-circle-line"></i>
+        </button>
+    </div>
+
+    <div id="scrollbar">
         <div class="container-fluid">
-            <div class="logo-box">
-                <a href="/" class="logo text-center">
-                    <span class="logo-lg">
-                        <img src="/img/logo/logo.png" alt="" height="20">
-                    </span>
-                    <span class="logo-sm">
-                        <img src="/img/logo/logo.png" alt="" height="20">
-                    </span>
-                </a>
-            </div>
-            <a class="navbar-toggle nav-link float-right">
-                <div class="lines">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </a>
-            <div id="navigation">
-                <?php if (Yii::$app->user->can('admin')) : ?>
-                    <?= backend\widgets\Menu::widget([
-                            'options' => [
-                                'class' => 'navigation-menu',
-                                'tag' => false,
-                            ],
-                            'labelTemplate' => '{label}',
-                            'isParentCssClass' => 'has-submenu',
-                            'items' => [
-                                [
-                                    'label' => 'Администрирование',
-                                    'icon' => 'fa fa-cog',
-                                    'visible' => Yii::$app->user->can('admin'),
-                                    'linkOptions' => ['class' => 'has-submenu'],
-                                    'url' => '#',
-                                    'items' => [
-                                        [
-                                            'label' => Yii::t('app', 'Настройки'),
-                                            'url' => ['/config/'],
-                                            'icon' => 'fa fa-cogs'
-                                        ],
-                                        [
-                                            'label' => Yii::t('app', 'Пользователи'),
-                                            'url' => ['/user-admin/user/'],
-                                            'icon' => 'fa fa-users'
-                                        ],
-                                    ]
-                                ],
-//                    ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii']],
-//                    ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug']],
-                            ],
-                        ]) ?>
-                <?php endif; ?>
+
+            <div id="two-column-menu"></div>
+
+            <?php if (!Yii::$app->getUser()->isGuest) : ?>
                 <?= backend\widgets\Menu::widget([
-                    'options' => [
-                        'class' => 'navigation-menu float-right',
-                        'tag' => false,
-                    ],
-                    'labelTemplate' => '{label}',
-                    'isParentCssClass' => 'has-submenu',
                     'items' => [
                         [
-                            'label' => Yii::t('app', 'Выход'),
-                            'visible' => !Yii::$app->user->isGuest,
-                            'url' => ['/site/logout'],
-                            'linkOptions' => ['data-method' => 'post'],
-                            'icon' => 'ti-power-off'
+                            'label' => 'Menu',
+                            'options' => ['class' => 'menu-title'],
                         ],
+//                            [
+//                                'label' => 'Пользователи',
+//                                'url' => ['/user/'],
+//                                'icon' => 'fa fa-users',
+//                                'linkOptions' => ['class' => 'nav-link'],
+//                            ],
                         [
-                            'label' => Yii::t('app', 'Вход'),
-                            'visible' => Yii::$app->user->isGuest,
-                            'url' => ['/site/login'],
-                            'linkOptions' => ['data-method' => 'post'],
-                            'icon' => 'ti-arrow-right'
+                            'label' => 'Админ',
+                            'icon' => 'fa fa-cog',
+                            'url' => '#administration',
+                            'id' => 'administration',
+                            'items' => [
+                                [
+                                    'label' => 'Настройки',
+                                    'url' => ['/config/'],
+                                    'icon' => 'fa fa-cogs',
+                                    'linkOptions' => ['class' => 'nav-link'],
+                                ],
+                                [
+                                    'label' => 'Пользователи',
+                                    'url' => ['/user-admin/user/'],
+                                    'icon' => 'fa fa-users',
+                                    'linkOptions' => ['class' => 'nav-link'],
+                                ],
+                            ],
                         ],
-                    ]
+                    ],
                 ]) ?>
-                <!-- End navigation menu -->
-
-                <div class="clearfix"></div>
-            </div>
+            <?php else: ?>
+                <?= backend\widgets\Menu::widget([
+                    'items' => [
+                        [
+                            'label' => 'Menu',
+                            'options' => ['class' => 'menu-title'],
+                        ],
+//                        ['label' => 'Gii', 'icon' => 'fa fa-file-code', 'url' => ['/gii/'], 'linkOptions' => ['class' => 'nav-link']],
+//                        ['label' => 'Debug', 'icon' => 'ri-dashboard-line', 'url' => ['/debug/'], 'linkOptions' => ['class' => 'nav-link']],
+                    ],
+                ]) ?>
+            <?php endif; ?>
         </div>
-        <!-- end container -->
+        <!-- Sidebar -->
     </div>
-    <!-- end navbar-custom -->
 
-</header>
-<!-- End Navigation Bar-->
+    <div class="sidebar-background"></div>
+</div>

@@ -44,6 +44,12 @@ use yii\widgets\Breadcrumbs;
 
                 <div class="d-flex align-items-center">
                     <div class="ms-1 header-item d-none d-sm-flex">
+                        <a href="/" class="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle" target="_blank">
+                            <i class='bx bx-sitemap fs-22'></i>
+                        </a>
+                    </div>
+
+                    <div class="ms-1 header-item d-none d-sm-flex">
                         <button type="button" class="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle"
                                 data-toggle="fullscreen">
                             <i class='bx bx-fullscreen fs-22'></i>
@@ -105,75 +111,8 @@ use yii\widgets\Breadcrumbs;
 <!--        </div>-->
     </div><!-- /.modal -->
 
-    <!-- ========== App Menu ========== -->
-    <div class="app-menu navbar-menu">
-        <!-- LOGO -->
-        <div class="navbar-brand-box">
-            <!-- Dark Logo-->
-            <a href="<?= Url::to(['/'])?>" class="logo logo-dark">
-                <span class="logo-sm"><img src="/images/logo-sm.png" alt="" height="22"></span>
-                <span class="logo-lg"><img src="/images/logo-dark.png" alt="" height="17"></span>
-            </a>
-            <!-- Light Logo-->
-            <a href="<?= Url::to(['/'])?>" class="logo logo-light">
-                <span class="logo-sm"><img src="/images/logo-sm.png" alt="" height="22"></span>
-                <span class="logo-lg"><img src="/images/logo-light.png" alt="" height="17"></span>
-            </a>
-            <button type="button" class="btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover"
-                    id="vertical-hover">
-                <i class="ri-record-circle-line"></i>
-            </button>
-        </div>
+    <?php include_once "topbar.php"; ?>
 
-        <div id="scrollbar">
-            <div class="container-fluid">
-
-                <div id="two-column-menu"></div>
-
-                <?php if (Yii::$app->user->can('admin')) : ?>
-                    <?= backend\widgets\Menu::widget([
-                        'items' => [
-                            [
-                                'label' => 'Menu',
-                                'options' => ['class' => 'menu-title'],
-                            ],
-//                            [
-//                                'label' => 'Пользователи',
-//                                'url' => ['/user/'],
-//                                'icon' => 'fa fa-users',
-//                                'linkOptions' => ['class' => 'nav-link'],
-//                            ],
-                            [
-                                'label' => 'Админ',
-                                'icon' => 'fa fa-cog',
-                                'url' => '#administration',
-                                'id' => 'administration',
-                                'items' => [
-                                    [
-                                        'label' => 'Настройки',
-                                        'url' => ['/config/'],
-                                        'icon' => 'fa fa-cogs',
-                                        'linkOptions' => ['class' => 'nav-link'],
-                                    ],
-                                    [
-                                        'label' => 'Пользователи',
-                                        'url' => ['/user-admin/user/'],
-                                        'icon' => 'fa fa-users',
-                                        'linkOptions' => ['class' => 'nav-link'],
-                                    ],
-                                ],
-                            ],
-//                            ['label' => 'Gii', 'icon' => 'fa fa-file-code', 'url' => ['/gii/'], 'linkOptions' => ['class' => 'nav-link']],
-//                            ['label' => 'Debug', 'icon' => 'ri-dashboard-line', 'url' => ['/debug/'], 'linkOptions' => ['class' => 'nav-link']],
-                        ],
-                    ]) ?>
-                <?php endif; ?>
-            </div>
-            <!-- Sidebar -->
-        </div>
-
-        <div class="sidebar-background"></div>
-    </div>
     <!-- Left Sidebar End -->
     <!-- Vertical Overlay-->
     <div class="vertical-overlay"></div>

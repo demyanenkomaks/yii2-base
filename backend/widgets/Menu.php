@@ -13,7 +13,7 @@ class Menu extends \yii\widgets\Menu
     /**
      * @inheritdoc
      */
-    public $linkTemplate = '<a href="{url}" {attr}>{icon} {label}</a>';
+    public $linkTemplate = '<a href="{url}" {attr}>{icon} <span>{label}</span></a>';
     public $labelTemplate = '<span>{label}</span>';
     public $submenuTemplate = '<div class="collapse menu-dropdown" id="{id}"><ul class="nav nav-sm flex-column">{items}</ul></div>';
     public $itemOptions = ['class' => 'nav-item'];

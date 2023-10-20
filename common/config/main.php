@@ -92,6 +92,9 @@ return [
             'class' => \yii\symfonymailer\Mailer::class,
             'viewPath' => '@common/mail',
             'useFileTransport' =>  filter_var($_ENV['MAILER_SEND_FILE'], FILTER_VALIDATE_BOOLEAN),
+            'transport' => [
+                'dsn' => 'native://default',
+            ]
         ],
         'formatter' => [
             'dateFormat' => 'php:d.m.Y',

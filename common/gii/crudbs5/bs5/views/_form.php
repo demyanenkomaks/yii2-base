@@ -52,13 +52,13 @@ use yii\widgets\ActiveForm;
     <div class="col-12">
         <div class="card-box">
             <div class="row">
-                <?php foreach ($generator->getColumnNames() as $attribute) {
-                    if (in_array($attribute, $safeAttributes)) {
-                        echo '<div class="col-12">' . PHP_EOL;
-                        echo '                    <?= ' . $generator->generateActiveField($attribute) . " ?>\n";
-                        echo '                </div>' . PHP_EOL;
-                    }
-                } ?>
+<?php foreach ($generator->getColumnNames() as $attribute) {
+    if (in_array($attribute, $safeAttributes)) {
+        echo '<div class="col-12">' . PHP_EOL;
+        echo '                    <?= ' . $generator->generateActiveField($attribute) . " ?>\n";
+        echo '                </div>' . PHP_EOL;
+    }
+} ?>
             </div>
         </div>
     </div>

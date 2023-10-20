@@ -45,7 +45,6 @@ return [
             'COOKIE_VALIDATION_KEY_FRONTEND',
         ],
         'createSymlink' => [
-            'backend/web/uploads' => 'web/uploads',
             'web/backend' => 'backend/web'
         ],
     ],
@@ -66,7 +65,6 @@ return [
             'COOKIE_VALIDATION_KEY_FRONTEND',
         ],
         'createSymlink' => [
-            'backend/web/uploads' => 'web/uploads',
             'web/backend' => 'backend/web'
         ],
     ],

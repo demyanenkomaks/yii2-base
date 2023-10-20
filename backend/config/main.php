@@ -18,9 +18,9 @@ $config = [
             'disabledCommands' => ['netmount'], //отключение ненужных команд https://github.com/Studio-42/elFinder/wiki/Client-configuration-options#commands
             'roots' => [
                 [
-                    'baseUrl' => '@web',
-                    'basePath' => '@webroot',
-                    'path' => 'uploads',
+                    'baseUrl' => '',
+                    'basePath' => '@app/../web',
+                    'path' => 'uploads/file',
                     'name' => 'Uploads',
                     'options' => [
                         'uploadOverwrite' => false,
